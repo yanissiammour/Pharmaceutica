@@ -1,2 +1,0 @@
-# Pharmaceutica
-Pharmaceutica
