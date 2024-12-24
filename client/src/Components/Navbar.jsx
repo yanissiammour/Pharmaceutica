@@ -6,7 +6,9 @@ export default function Navbar() {
             <h3 className="scroll-m-20 text-sm font-extrabold tracking-tight lg:text-4xl pl-5">
                 Pharmaceutica
             </h3>
-            <NavbarMenu />
+            <div className="pr-2">
+                <NavbarMenu />
+            </div>
         </div>
     );
 }

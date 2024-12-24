@@ -37,9 +37,11 @@ export default function NavbarMenu() {
                 <NavigationMenuList>
                     {menuItems.map((menu, index) => (
                         <NavigationMenuItem key={index}>
-                            <NavigationMenuTrigger>{menu.title}</NavigationMenuTrigger>
+                            <NavigationMenuTrigger>
+                                {menu.title}
+                            </NavigationMenuTrigger>
                             <NavigationMenuContent>
-                                <ul className="ml-4 w-56 h-auto">
+                                <ul className=" w-56 h-auto">
                                     {menu.links.map((link, index) => (
                                         <li
                                             key={index}
