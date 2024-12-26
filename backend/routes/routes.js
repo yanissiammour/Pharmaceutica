@@ -10,7 +10,7 @@ const ProductController = require("../controller/controller");
 //POST
 router.post("/productlist/add", ProductController.createElement);
 router.post("/clientlist/add", ProductController.createElement);
-router.post("/transcationlist/add", ProductController.getAllElements);
+router.post("/transcationlist/add", ProductController.createElement);
 
 //GET
 router.get("/productlist", ProductController.getAllElements);
