@@ -15,7 +15,7 @@ export default function TransactionsTable() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8081/inventaire")
+            .get('http://localhost:8081/Pharmaceutica/transcationlist?tab=3')
             .then((res) => {
                 setTransactions(res.data);
                 setIsLoading(false);
@@ -43,6 +43,9 @@ export default function TransactionsTable() {
                     <TableHead className="p-2 text-left">
                         Product's Name
                     </TableHead>
+                    <TableHead className="p-2 text-left">
+                        Product's type
+                    </TableHead>
                     <TableHead className="p-2 text-left">Date</TableHead>
                     <TableHead className="p-2 text-left">Quantity</TableHead>
                     <TableHead className="p-2 text-left">Price</TableHead>
@@ -50,25 +53,28 @@ export default function TransactionsTable() {
             </TableHeader>
             <TableBody>
                 {transactions.length > 0 ? (
-                    transactions.map((transaction, index) => (
+                    transactions.map((data, index) => (
                         <TableRow key={index}>
                             <TableCell className="p-2 font-medium">
-                                {transaction.id}
+                                {data.idt}
                             </TableCell>
                             <TableCell className="p-2">
-                                {transaction.clientName}
+                                {data.client_name}
                             </TableCell>
                             <TableCell className="p-2">
-                                {transaction.productName}
+                                {data.product_name}
+                            </TableCell>
+                            <TableCell className="p-2">
+                                {data.product_type}
                             </TableCell>
                             <TableCell className="p-2 text-left">
-                                {transaction.date}
+                                {data.formatted_date}
                             </TableCell>
                             <TableCell className="p-2 text-left">
-                                {transaction.quantity}
+                                {data.quantity}
                             </TableCell>
                             <TableCell className="p-2 text-left">
-                                ${transaction.price}
+                                {data.price}
                             </TableCell>
                         </TableRow>
                     ))
