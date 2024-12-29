@@ -6,27 +6,28 @@ import {
     NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export default function NavbarMenu({ location }) {
     const menuItems = [
         {
             title: "Transactions",
             links: [
-                { label: "Add a new transaction", href: "#" },
+                { label: "Add a new transaction", href: "/transactions" },
                 { label: "Access transactions' log", href: "#" },
             ],
         },
         {
             title: "Products",
             links: [
-                { label: "Add a new product", href: "#" },
+                { label: "Add a new product", href: "/products" },
                 { label: "Access products' log", href: "#" },
             ],
         },
         {
             title: "Clients",
             links: [
-                { label: "Add a new client", href: "#" },
+                { label: "Add a new client", href: "/clients" },
                 { label: "Access clients' log", href: "#" },
             ],
         },
@@ -50,12 +51,11 @@ export default function NavbarMenu({ location }) {
                                                     key={index}
                                                     className="hover:bg-gray-200 rounded transition duration-150"
                                                 >
-                                                    <a
-                                                        href={link.href}
-                                                        className="block px-4 py-2 w-full text-left text-gray-700 hover:text-gray-900"
-                                                    >
-                                                        {link.label}
-                                                    </a>
+                                                    <Link to={link.href}>
+                                                        <a className="block px-4 py-2 w-full text-left text-gray-700 hover:text-gray-900">
+                                                            {link.label}
+                                                        </a>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>
