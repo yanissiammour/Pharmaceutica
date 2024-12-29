@@ -5,6 +5,7 @@ import {
     CardHeader,
 } from "@/components/ui/card";
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import TransactionSvg from "@/Components/images/undraw_order-delivered_puaw.svg";
 import ProductsSvg from "@/Components/images/undraw_logistics_xpdj.svg";
@@ -32,6 +33,7 @@ export default function FunctionCards() {
             imageClass: "absolute bottom-0 right-0 w-96 h-auto",
             cardClass: "relative overflow-hidden pt-16",
             cardContentClass: "pt-10 pb-8",
+            cardLink: "/transactions",
         },
         {
             titleClass:
@@ -51,6 +53,7 @@ export default function FunctionCards() {
             image: ProductsSvg,
             imageClass: "absolute bottom-0 left-0 w-[35em] h-auto pl-10",
             cardClass: "relative overflow-hidden pt-16",
+            cardLink: "/products",
         },
         {
             title: "Client-Centric Lab Management System",
@@ -71,6 +74,7 @@ export default function FunctionCards() {
                 },
             ],
             cardClass: "relative overflow-hidden pt-16 h-[27rem]",
+            cardLink: "/clients",
         },
     ];
 
@@ -91,7 +95,9 @@ export default function FunctionCards() {
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className={card.cardContentClass}>
-                                <Button>{card.buttonText}</Button>
+                                <Link to={card.cardLink}>
+                                    <Button>{card.buttonText}</Button>
+                                </Link>
                             </CardContent>
                         </div>
                         {card.image && (

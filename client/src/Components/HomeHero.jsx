@@ -9,7 +9,7 @@ export default function HomeHero() {
                     Software
                 </h3>
             </div>
-            <div className="flex justify-center items-center pt-10 pb-16">
+            <div className="flex justify-center items-center pt-10 pb-12">
                 <p className="text-center text-2xl">
                     Pharmaceutica offers everything you need to manage <br />
                     your laboratory.
