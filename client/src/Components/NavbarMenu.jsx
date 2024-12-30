@@ -11,24 +11,25 @@ import { Link } from "react-router-dom";
 export default function NavbarMenu({ location }) {
     const menuItems = [
         {
-            title: "Transactions",
+            title: "Clients",
             links: [
-                { label: "Add a new transaction", href: "/transactions" },
-                { label: "Access transactions' log", href: "#" },
+                { label: "Add a new client", href: "/clients" },
+                { label: "Access clients' log", href: "/clientsLog" },
             ],
         },
         {
             title: "Products",
             links: [
                 { label: "Add a new product", href: "/products" },
-                { label: "Access products' log", href: "#" },
+                { label: "Access products' log", href: "/productsLog" },
             ],
         },
+
         {
-            title: "Clients",
+            title: "Transactions",
             links: [
-                { label: "Add a new client", href: "/clients" },
-                { label: "Access clients' log", href: "#" },
+                { label: "Add a new transaction", href: "/transactions" },
+                { label: "Access transactions' log", href: "/transactionsLog" },
             ],
         },
     ];

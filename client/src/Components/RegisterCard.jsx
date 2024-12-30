@@ -59,7 +59,7 @@ export default function TransactionCard() {
             </CardHeader>
             <CardContent>
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid grid-rows-3 grid-cols-2 my-5 gap-x-2 gap-y-10">
+                    <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10">
                         <div className="flex flex-col">
                             <Label className="pb-2">Client name</Label>
                             <Input
@@ -95,7 +95,7 @@ export default function TransactionCard() {
                     </div>
                 </form>
             </CardContent>
-            <CardFooter className="flex justify-center mt-2">
+            <CardFooter className="flex justify-center">
                 {isLoading ? (
                     <Button disabled className="w-72">
                         <Loader2 className="animate-spin" />
