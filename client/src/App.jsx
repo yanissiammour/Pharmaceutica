@@ -4,6 +4,9 @@ import Navbar from "./Components/Navbar";
 import Transactions from "./Pages/Transactions";
 import Clients from "./Pages/Clients";
 import Products from "./Pages/Products";
+import TransactionsLog from "./Pages/TransactionsLog";
+import ClientsLog from "./Pages/ClientsLog";
+import ProductsLog from "./Pages/ProductsLog";
 
 function App() {
     return (
@@ -15,6 +18,12 @@ function App() {
                     <Route path="/transactions" element={<Transactions />} />
                     <Route path="/clients" element={<Clients />} />
                     <Route path="/products" element={<Products />} />
+                    <Route path="/clientsLog" element={<ClientsLog />} />
+                    <Route path="/productsLog" element={<ProductsLog />} />
+                    <Route
+                        path="/transactionsLog"
+                        element={<TransactionsLog />}
+                    />
                 </Routes>
             </div>
         </BrowserRouter>

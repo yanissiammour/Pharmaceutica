@@ -8,9 +8,7 @@ export default function Navbar() {
     return (
         <div className="bg-white pt-5 flex justify-between ">
             <h3 className="scroll-m-20 text-sm font-extrabold tracking-tight lg:text-4xl pl-5">
-                <Link to="/">
-                    <a href=""> Pharmaceutica</a>
-                </Link>
+                <Link to="/">Pharmaceutica</Link>
             </h3>
             <div className="pr-2">
                 <NavbarMenu location={location} />

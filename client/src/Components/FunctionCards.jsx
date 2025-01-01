@@ -15,25 +15,25 @@ import ClientsSvg2 from "@/Components/images/undraw_conference-call_ccsp.svg";
 export default function FunctionCards() {
     const cards = [
         {
-            titleClass:
-                "scroll-m-20 font-extrabold tracking-light lg:text-4xl text-left",
-            title: (
-                <>
-                    Centralized <br />
-                    Lab <br />
-                    Transactions
-                </>
-            ),
-            secondDivClass: "px-12",
+            title: "Client-Centric Lab Management System",
+            titleClass: "scroll-m-20 font-extrabold tracking-light lg:text-4xl",
+            secondDivClass: "px-12 text-center",
             description:
-                "A feature to record and store detailed information about every transaction processed in the laboratory.",
-            descriptionClass: "w-48",
-            buttonText: "Make a Transaction",
-            image: TransactionSvg,
-            imageClass: "absolute bottom-0 right-0 w-96 h-auto",
-            cardClass: "relative overflow-hidden pt-16",
-            cardContentClass: "pt-10 pb-8",
-            cardLink: "/transactions",
+                "Centralized database to catalog all products used or offered by the laboratory.",
+            buttonText: "Add a Client",
+            cardContentClass: "pt-44 pb-8",
+            images: [
+                {
+                    src: ClientsSvg1,
+                    class: "absolute bottom-0 right-0 w-60 h-auto pl-10",
+                },
+                {
+                    src: ClientsSvg2,
+                    class: "absolute bottom-16 left-0 w-72 h-auto pl-10",
+                },
+            ],
+            cardClass: "relative overflow-hidden pt-16 h-[27rem]",
+            cardLink: "/clients",
         },
         {
             titleClass:
@@ -56,25 +56,25 @@ export default function FunctionCards() {
             cardLink: "/products",
         },
         {
-            title: "Client-Centric Lab Management System",
-            titleClass: "scroll-m-20 font-extrabold tracking-light lg:text-4xl",
-            secondDivClass: "px-12 text-center",
+            titleClass:
+                "scroll-m-20 font-extrabold tracking-light lg:text-4xl text-left",
+            title: (
+                <>
+                    Centralized <br />
+                    Lab <br />
+                    Transactions
+                </>
+            ),
+            secondDivClass: "px-12",
             description:
-                "Centralized database to catalog all products used or offered by the laboratory.",
-            buttonText: "Add a Client",
-            cardContentClass: "pt-44 pb-8",
-            images: [
-                {
-                    src: ClientsSvg1,
-                    class: "absolute bottom-0 right-0 w-60 h-auto pl-10",
-                },
-                {
-                    src: ClientsSvg2,
-                    class: "absolute bottom-16 left-0 w-72 h-auto pl-10",
-                },
-            ],
-            cardClass: "relative overflow-hidden pt-16 h-[27rem]",
-            cardLink: "/clients",
+                "A feature to record and store detailed information about every transaction processed in the laboratory.",
+            descriptionClass: "w-48",
+            buttonText: "Make a Transaction",
+            image: TransactionSvg,
+            imageClass: "absolute bottom-0 right-0 w-96 h-auto",
+            cardClass: "relative overflow-hidden pt-16",
+            cardContentClass: "pt-10 pb-8",
+            cardLink: "/transactions",
         },
     ];
 
