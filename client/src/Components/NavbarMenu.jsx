@@ -35,7 +35,7 @@ export default function NavbarMenu({ location }) {
     ];
 
     return (
-        <div className="float-right align-center">
+        <div>
             {location.pathname !== "/" ? (
                 <>
                     <NavigationMenu>

@@ -83,7 +83,7 @@ export default function TransactionsTable() {
                                     {data.quantity}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.price}
+                                    ${data.price}
                                 </TableCell>
                             </TableRow>
                         ))
