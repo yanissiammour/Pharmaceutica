@@ -1,3 +1,4 @@
+![Screenshot of my app](https://github.com/yanissiammour/Pharmaceutica/blob/main/Pharmaceutica-ScreenShot.png)
 
 # About This Project 🚀 
 Pharmaceutica is an innovative platform designed to transform the pharmaceutical industry. Focused on reliability and efficiency, it provides advanced tools for managing transactions, products, and clients within a comprehensive warehouse tracking system.
