@@ -2,8 +2,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { TransactionContext } from "@/Context/TransactionContext";
 import axios from "axios";
 import {
     Card,
@@ -14,17 +14,18 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
-export default function TransactionCard({
-    name,
-    setclientName,
-    idp,
-    setpID,
-    address,
-    setaddress,
-    quantity,
-    setpQuantity,
-}) {
+export default function TransactionCard() {
     const [isLoading, setIsLoading] = useState(false);
+    const {
+        name,
+        setclientName,
+        idp,
+        setpID,
+        address,
+        setaddress,
+        quantity,
+        setpQuantity,
+    } = useContext(TransactionContext);
 
     const fields = [
         {
@@ -111,7 +112,7 @@ export default function TransactionCard({
             </CardHeader>
             <CardContent>
                 <form onSubmit={(e) => e.preventDefault()}>
-                    <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10">
+                    <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10 h-60">
                         {fields.map(
                             (
                                 {
@@ -145,7 +146,7 @@ export default function TransactionCard({
                     </div>
                 </form>
             </CardContent>
-            <CardFooter className="flex justify-center">
+            <CardFooter className="flex justify-center ">
                 {isLoading ? (
                     <Button disabled className="w-72">
                         <Loader2 className="animate-spin" />

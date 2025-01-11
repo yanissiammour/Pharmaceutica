@@ -1,28 +1,14 @@
 import TransactionCard from "@/Components/TransactionCard";
 import TransactionTable from "@/Components/TransactionTable";
+import { TransactionProvider } from "@/Context/TransactionContext";
 
-export default function Transactions({
-    name,
-    setclientName,
-    idp,
-    setpID,
-    address,
-    setaddress,
-    quantity,
-    setpQuantity,
-}) {
+export default function Transactions() {
     return (
         <div className="text-white pt-20">
-            <TransactionCard
-                name={name}
-                setclientName={setclientName}
-                idp={idp}
-                setpID={setpID}
-                address={address}
-                setaddress={setaddress}
-                quantity={quantity}
-                setpQuantity={setpQuantity}
-            />
+            <TransactionProvider>
+                <TransactionCard />
+            </TransactionProvider>
+
             <div className="py-10 px-32">
                 <TransactionTable />
             </div>
