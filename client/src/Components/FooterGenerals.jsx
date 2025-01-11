@@ -9,11 +9,11 @@ export default function FooterGenerals() {
     ];
 
     return (
-        <div className="w-72 flex justify-center items-center flex-col border-l pt-10">
-            <h3 className="pb-10 scroll-m-20 text-xl font-semibold tracking-tight">
+        <div className="w-72 flex justify-center items-center flex-col border-l pt-2">
+            <h3 className="pb-8 scroll-m-20 text-xl font-semibold tracking-tight">
                 General
             </h3>
-            <div className="flex flex-col gap-10 text-center">
+            <div className="flex flex-col gap-2 text-center">
                 {pages.map((page, index) => (
                     <Link key={index} to={page.link}>
                         <Button variant="link">{page.content}</Button>

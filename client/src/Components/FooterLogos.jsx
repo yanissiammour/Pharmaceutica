@@ -14,7 +14,7 @@ export default function FooterLogos() {
     ];
 
     return (
-        <div className="pl-96 h-96 w-72 flex flex-col justify-center items-center text-left">
+        <div className="pl-96 pt-16 h-48 w-72 flex flex-col justify-center items-center text-left">
             <div>
                 <h3 className="scroll-m-20 font-extrabold tracking-light lg:text-4xl">
                     Pharmaceutica
