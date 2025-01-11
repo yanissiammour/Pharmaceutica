@@ -1,7 +1,7 @@
 ![Screenshot of my app](https://github.com/yanissiammour/Pharmaceutica/blob/main/Pharmaceutica-ScreenShot.png)
 
 # About This Project 🚀 
-Pharmaceutica is an innovative platform designed to transform the pharmaceutical industry. Focused on reliability and efficiency, it provides advanced tools for managing transactions, products, and clients within a comprehensive warehouse tracking system.
+**Pharmaceutica** is an innovative platform designed to transform the pharmaceutical industry. Focused on reliability and efficiency, it provides advanced tools for managing transactions, products, and clients within a comprehensive warehouse tracking system.
 
 
 ## Features 💡
@@ -22,16 +22,32 @@ Pharmaceutica is an innovative platform designed to transform the pharmaceutical
 
 ## Run Locally 🚦
 
+### Prerequisites
+
+* Node.js installed on your local machine.
+* npm or yarn to manage project dependencies.
+
+### Instalation
+
 * Clone the repository to your machine
 
 ```bash
   https://github.com/yanissiammour/Pharmaceutica.git
 ```
 * Install dependencies :
-
+  
+if you're using npm:
+  
 ```bash
   cd client
   npm install
+```
+
+or, if you're using yarn:
+
+```bash
+  cd backend
+  yarn server
 ```
 * Start the backend server :
 
@@ -39,17 +55,40 @@ Pharmaceutica is an innovative platform designed to transform the pharmaceutical
   cd backend
   node server
 ```
+
+
 * Start the deployement server :
 
 ```bash
   cd client
   npm run dev
 ```
-* Open the URL displayed in your console using your web browser.:
+* Open the URL displayed in your console using your web browser.
 
+## Contributing
+
+Contributions are welcome! If you want to contribute to the project:
+
+1. Fork the repository.
+2. Clone the repository.
 ```bash
-  cd client
-  npm run dev
+git clone https://github.com/yanissiammour/Pharmaceutica.git
 ```
+3. Create a new branch.
+4. Make your changes.
+5. Test your changes.
+6. Commit your changes.
+7. Push to your fork.
+8. Submit a pull request
+
+### Pull Request Guidelines
+
+* Provide a clear description of the changes you have made in your pull request.
+* Link any issues that your changes address. If you're fixing a bug, reference the issue number (e.g., `Fixes #42`).
+* Follow the existing coding style of the project to ensure consistency.
+
+### Issues and Feature Requests
+
+If you find any bugs or would like to request new features, feel free to open an issue in the repository. Provide as much detail as possible, including steps to reproduce and error messages.
 
    
