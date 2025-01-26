@@ -19,7 +19,7 @@ export default function TransactionsTable() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8081/Pharmaceutica/transcationlist?tab=3")
+            .get("http://localhost:8081/Pharmaceutica//GetAllElements?tab=3")
             .then((res) => {
                 setTransactions(res.data);
                 setIsLoading(false);
@@ -77,7 +77,7 @@ export default function TransactionsTable() {
                                     {data.formatted_date}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {/* {data.address}  */}Baghlia
+                                    {data.client_address}
                                 </TableCell>
                                 <TableCell className="p-2">
                                     {data.quantity}

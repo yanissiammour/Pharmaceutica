@@ -62,14 +62,6 @@ export default function TransactionCard() {
         },
     ];
 
-    const handlePaste = (e) => {
-        const pasteData = e.clipboardData.getData("Text");
-        if (!/^\d*$/.test(pasteData)) {
-            e.preventDefault();
-            alert("Only numeric numbers are allowed !");
-        }
-    };
-
     const handleClick = (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -87,12 +79,15 @@ export default function TransactionCard() {
         }
 
         axios
-            .post("http://localhost:8081/Pharmaceutica/productlist/add?tab=3", {
-                name,
-                idp,
-                address,
-                quantity,
-            })
+            .post(
+                "http://localhost:8081/Pharmaceutica//AddingElement/add?tab=3",
+                {
+                    name,
+                    idp,
+                    address,
+                    quantity,
+                }
+            )
             .then((res) => {
                 console.log(res);
                 navigate("/");
@@ -133,7 +128,6 @@ export default function TransactionCard() {
                                         onChange={(e) =>
                                             setValue(e.target.value)
                                         }
-                                        onPaste={handlePaste}
                                         value={value}
                                         type={type}
                                     />
