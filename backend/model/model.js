@@ -80,7 +80,7 @@ function chose_val(elementData,ind){
 const getAllElements = (pageID,callback)=>{
     console.log("MODEL pageID value:", pageID);
     let sql_query="";
-    if(pageID===3){sql_query= "SELECT t.idt, DATE_FORMAT(t.date, '%Y-%m-%d') AS formatted_date, t.quantity, t.price, p.name AS product_name, p.type AS product_type, c.name AS client_name FROM `Transaction` t JOIN `Product` p ON t.idp = p.idp JOIN `Client` c ON t.idc = c.idc"}
+    if(pageID===3){sql_query= "SELECT t.idt, DATE_FORMAT(t.date, '%Y-%m-%d') AS formatted_date, t.quantity, t.price, p.name AS product_name, p.type AS product_type, c.name AS client_name, c.address AS client_address FROM `Transaction` t JOIN `Product` p ON t.idp = p.idp JOIN `Client` c ON t.idc = c.idc"}
 	else{sql_query = "SELECT * FROM "+chose_Tab(pageID)[0]}
 	 
      db.query(sql_query, (err, result) => {
@@ -146,6 +146,21 @@ const deleteElement = (pageID,id, callback) => {
         return callback(null, result);
     });
 };
+
+const serachElement = (pageID,id, callback) => {
+    const sql_query = `SET @searchTerm = ?;
+SELECT *, (LENGTH(name) - LENGTH(REPLACE(name, @searchTerm, ''))) / LENGTH(@searchTerm) AS name_similarity, (LENGTH(type) - LENGTH(REPLACE(type, @searchTerm, ''))) / LENGTH(@searchTerm) AS type_similarity, (LENGTH(lab) - LENGTH(REPLACE(lab, @searchTerm, ''))) / LENGTH(@searchTerm) AS lab_similarity FROM Product WHERE name LIKE CONCAT('%', @searchTerm, '%') OR type LIKE CONCAT('%', @searchTerm, '%') OR lab LIKE CONCAT('%', @searchTerm, '%') ORDER BY GREATEST(name_similarity, type_similarity, lab_similarity) DESC;
+`
+    db.query(sql_query, [id], (err, result) => {
+        if (err) {
+            console.log(err);
+            return callback(err, null);
+        }
+        return callback(null, result);
+    });
+};
+
+
 
 /************BUSINESS LOGIC*************/
 module.exports = {
