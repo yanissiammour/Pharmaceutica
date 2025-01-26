@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ProductController = require("../controller/controller");
+const Controller = require("../controller/controller");
 
 
 //UNIVERSALL POST
@@ -8,18 +8,17 @@ const ProductController = require("../controller/controller");
 
 
 //POST
-router.post("/productlist/add", ProductController.createElement);
-router.post("/clientlist/add", ProductController.createElement);
-router.post("/transcationlist/add", ProductController.createElement);
+router.post("/AddingElement/add", Controller.createElement);
+
 
 //GET
-router.get("/productlist", ProductController.getAllElements);
-router.get("/clientlist", ProductController.getAllElements);
-router.get("/transcationlist", ProductController.getAllElements);
+router.get("/GetAllElements", Controller.getAllElements);
+
 
 //DELETE
-router.delete("/productlist/:id", ProductController.deleteElement);
-router.delete("/clientlist/:id", ProductController.deleteElement);
+/*pour les delete c'est pas fini*/
+router.delete("/productlist/:id", Controller.deleteElement);
+router.delete("/clientlist/:id", Controller.deleteElement);
 
 
 module.exports = router;
