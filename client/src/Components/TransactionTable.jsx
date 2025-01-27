@@ -19,7 +19,7 @@ export default function TransactionsTable() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8081/Pharmaceutica//GetAllElements?tab=3")
+            .get("http://localhost:8081/Pharmaceutica/GetAllElements?tab=3")
             .then((res) => {
                 setTransactions(res.data);
                 setIsLoading(false);

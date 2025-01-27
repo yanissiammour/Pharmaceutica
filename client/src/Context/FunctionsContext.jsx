@@ -1,15 +1,19 @@
 import { createContext } from "react";
 import { useState } from "react";
 
-const TransactionContext = createContext();
+const FunctionsContext = createContext();
 
-const TransactionProvider = ({ children }) => {
+const FunctionsProvider = ({ children }) => {
     const [name, setclientName] = useState("");
     const [idp, setpID] = useState("");
     const [address, setaddress] = useState("");
     const [quantity, setpQuantity] = useState("");
+    const [category, setCategory] = useState("");
+    const [phoneNum, setPhoneNum] = useState("");
+    const [email, setEmail] = useState("");
+
     return (
-        <TransactionContext.Provider
+        <FunctionsContext.Provider
             value={{
                 name,
                 setclientName,
@@ -19,11 +23,17 @@ const TransactionProvider = ({ children }) => {
                 setaddress,
                 quantity,
                 setpQuantity,
+                category,
+                setCategory,
+                phoneNum,
+                setPhoneNum,
+                email,
+                setEmail,
             }}
         >
             {children}
-        </TransactionContext.Provider>
+        </FunctionsContext.Provider>
     );
 };
 
-export { TransactionProvider, TransactionContext };
+export { FunctionsProvider, FunctionsContext };

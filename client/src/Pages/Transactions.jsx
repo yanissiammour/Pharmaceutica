@@ -1,13 +1,13 @@
 import TransactionCard from "@/Components/TransactionCard";
 import TransactionTable from "@/Components/TransactionTable";
-import { TransactionProvider } from "@/Context/TransactionContext";
+import { FunctionsProvider } from "@/Context/FunctionsContext";
 
 export default function Transactions() {
     return (
         <div className="text-white pt-20">
-            <TransactionProvider>
+            <FunctionsProvider>
                 <TransactionCard />
-            </TransactionProvider>
+            </FunctionsProvider>
 
             <div className="py-10 px-32">
                 <TransactionTable />

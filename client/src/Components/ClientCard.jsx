@@ -2,9 +2,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useContext, useState } from "react";
-import { FunctionsContext } from "@/Context/FunctionsContext";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { FunctionsContext } from "@/Context/FunctionsContext";
 import {
     Card,
     CardContent,
@@ -14,7 +14,7 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
-export default function TransactionCard() {
+export default function ClientCard() {
     const [isLoading, setIsLoading] = useState(false);
     const {
         name,
@@ -23,8 +23,12 @@ export default function TransactionCard() {
         setpID,
         address,
         setaddress,
-        quantity,
-        setpQuantity,
+        category,
+        setCategory,
+        phoneNum,
+        setPhoneNum,
+        email,
+        setEmail,
     } = useContext(FunctionsContext);
 
     const fields = [
@@ -53,12 +57,28 @@ export default function TransactionCard() {
             description: "Enter a valid address",
         },
         {
-            label: "Quantity",
-            id: "quantity",
+            label: "Category",
+            id: "category",
+            type: "text",
+            value: category,
+            setValue: setCategory,
+            description: "Eg: Individual/ Company",
+        },
+        {
+            label: "Phone Number",
+            id: "phoneNum",
             type: "number",
-            value: quantity,
-            setValue: setpQuantity,
-            description: "Only numeric numbers are allowed",
+            value: phoneNum,
+            setValue: setPhoneNum,
+            description: "Enter the phone number of the client",
+        },
+        {
+            label: "Email",
+            id: "email",
+            type: "text",
+            value: email,
+            setValue: setEmail,
+            description: "Enter a valid email address",
         },
     ];
 
@@ -66,17 +86,17 @@ export default function TransactionCard() {
         e.preventDefault();
         setIsLoading(true);
 
-        if (!/^[a-zA-Z\s]+$/.test(name)) {
-            alert("Client name should only contain letters and spaces.");
-            setIsLoading(false);
-            return;
-        }
+        // if (!/^[a-zA-Z\s]+$/.test(name)) {
+        //     alert("Client name should only contain letters and spaces.");
+        //     setIsLoading(false);
+        //     return;
+        // }
 
-        if (!name || !idp || !address || !quantity) {
-            alert("Please fill out all fields.");
-            setIsLoading(false);
-            return;
-        }
+        // if (!name || !idp || !address || !quantity) {
+        //     alert("Please fill out all fields.");
+        //     setIsLoading(false);
+        //     return;
+        // }
 
         axios
             .post(
@@ -85,7 +105,9 @@ export default function TransactionCard() {
                     name,
                     idp,
                     address,
-                    quantity,
+                    category,
+                    email,
+                    phoneNum,
                 }
             )
             .then((res) => {
@@ -140,7 +162,7 @@ export default function TransactionCard() {
                     </div>
                 </form>
             </CardContent>
-            <CardFooter className="flex justify-center ">
+            <CardFooter className="flex justify-center mt-14">
                 {isLoading ? (
                     <Button disabled className="w-72">
                         <Loader2 className="animate-spin" />
