@@ -1,4 +1,5 @@
 import ClientCard from "@/Components/ClientCard";
+import ClientTable from "@/Components/ClientTable";
 import { FunctionsProvider } from "@/Context/FunctionsContext";
 
 export default function Clients() {
@@ -7,7 +8,9 @@ export default function Clients() {
             <FunctionsProvider>
                 <ClientCard />
             </FunctionsProvider>
-            <div className="py-10 px-32"></div>
+            <div className="py-10 px-32">
+                <ClientTable />
+            </div>
         </div>
     );
 }
