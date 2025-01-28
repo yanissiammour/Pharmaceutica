@@ -1,3 +1,9 @@
+import TransactionTable from "@/Components/TransactionTable";
+
 export default function TransactionsLog() {
-    return <div>Transactions Log</div>;
+    return (
+        <div>
+            <TransactionTable />
+        </div>
+    );
 }

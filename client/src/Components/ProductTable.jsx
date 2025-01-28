@@ -13,15 +13,15 @@ import {
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TransactionTable() {
+export default function ProductTable() {
     const [isLoading, setIsLoading] = useState(true);
-    const [transactions, setTransactions] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         axios
             .get("http://localhost:8081/Pharmaceutica/GetAllElements?tab=3")
             .then((res) => {
-                setTransactions(res.data);
+                setProducts(res.data);
                 setIsLoading(false);
             })
             .catch((err) => {
@@ -31,14 +31,11 @@ export default function TransactionTable() {
     }, []);
 
     const tableHeaders = [
-        "Transaction ID",
-        "Client Name",
+        "Product ID",
         "Product Name",
         "Product Type",
-        "Date",
-        "Address",
         "Quantity",
-        "Price",
+        "Laboratory",
     ];
 
     if (isLoading) {
@@ -58,14 +55,11 @@ export default function TransactionTable() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {transactions.length > 0 ? (
-                        transactions.map((data, index) => (
+                    {products.length > 0 ? (
+                        products.map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell className="p-2">
-                                    {data.idt}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    {data.client_name}
+                                    {data.productID}
                                 </TableCell>
                                 <TableCell className="p-2">
                                     {data.product_name}
@@ -74,27 +68,21 @@ export default function TransactionTable() {
                                     {data.product_type}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.formatted_date}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    {data.client_address}
-                                </TableCell>
-                                <TableCell className="p-2">
                                     {data.quantity}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    ${data.price}
+                                    {data.laboratory}
                                 </TableCell>
                             </TableRow>
                         ))
                     ) : (
                         <>
-                            <p>No Transactions Found</p>
+                            <p>No Products Found</p>
                         </>
                     )}
                 </TableBody>
             </Table>
-            <Link to="/transactionsLog">
+            <Link to="/productsLog">
                 <Button variant="link" className="float-right">
                     See more
                 </Button>

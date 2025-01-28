@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TransactionsTable() {
+export default function ClientTable() {
     const [isLoading, setIsLoading] = useState(true);
     const [clients, setClients] = useState([]);
 
