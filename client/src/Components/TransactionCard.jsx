@@ -80,7 +80,7 @@ export default function TransactionCard() {
 
         axios
             .post(
-                "http://localhost:8081/Pharmaceutica//AddingElement/add?tab=3",
+                "http://localhost:8081/Pharmaceutica/AddingElement/add?tab=3",
                 {
                     name,
                     idp,

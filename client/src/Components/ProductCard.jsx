@@ -13,13 +13,6 @@ import {
     CardDescription,
     CardTitle,
 } from "@/components/ui/card";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 
 export default function ProductCard() {
     const [isLoading, setIsLoading] = useState(false);
@@ -91,7 +84,7 @@ export default function ProductCard() {
                 {
                     productName,
                     laboratory,
-                    productCategory,
+                    product_type,
                     productQuantity,
                 }
             )

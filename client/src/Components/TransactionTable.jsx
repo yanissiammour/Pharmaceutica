@@ -14,20 +14,25 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function TransactionTable() {
-    const [isLoading, setIsLoading] = useState(true);
     const [transactions, setTransactions] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const maxRows = 13;
 
     useEffect(() => {
-        axios
-            .get("http://localhost:8081/Pharmaceutica/GetAllElements?tab=3")
-            .then((res) => {
+        const fetchTransactions = async () => {
+            try {
+                const res = await axios.get(
+                    "http://localhost:8081/Pharmaceutica/GetAllElements?tab=3"
+                );
                 setTransactions(res.data);
+            } catch (error) {
+                console.error("Error fetching transactions:", error);
+            } finally {
                 setIsLoading(false);
-            })
-            .catch((err) => {
-                console.log("error fetching data", err);
-                setIsLoading(false);
-            });
+            }
+        };
+
+        fetchTransactions();
     }, []);
 
     const tableHeaders = [
@@ -39,6 +44,7 @@ export default function TransactionTable() {
         "Address",
         "Quantity",
         "Price",
+        "Status",
     ];
 
     if (isLoading) {
@@ -59,7 +65,7 @@ export default function TransactionTable() {
                 </TableHeader>
                 <TableBody>
                     {transactions.length > 0 ? (
-                        transactions.map((data, index) => (
+                        transactions.slice(0, maxRows).map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell className="p-2">
                                     {data.idt}
@@ -84,6 +90,10 @@ export default function TransactionTable() {
                                 </TableCell>
                                 <TableCell className="p-2">
                                     ${data.price}
+                                </TableCell>{" "}
+                                <TableCell className="p-2">
+                                    {/* Here should be the transaction status either "Ongoing" or "Finished" */}
+                                    {data.transactionsStatus}
                                 </TableCell>
                             </TableRow>
                         ))
