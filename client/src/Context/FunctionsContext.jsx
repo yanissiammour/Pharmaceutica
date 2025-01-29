@@ -11,6 +11,10 @@ const FunctionsProvider = ({ children }) => {
     const [category, setCategory] = useState("");
     const [phoneNum, setPhoneNum] = useState("");
     const [email, setEmail] = useState("");
+    const [productName, setProductName] = useState("");
+    const [laboratory, setLaboratory] = useState("");
+    const [product_type, setProduct_type] = useState("");
+    const [productQuantity, setProductQuantity] = useState("");
 
     return (
         <FunctionsContext.Provider
@@ -29,6 +33,14 @@ const FunctionsProvider = ({ children }) => {
                 setPhoneNum,
                 email,
                 setEmail,
+                productName,
+                setProductName,
+                laboratory,
+                setLaboratory,
+                productQuantity,
+                setProductQuantity,
+                product_type,
+                setProduct_type,
             }}
         >
             {children}

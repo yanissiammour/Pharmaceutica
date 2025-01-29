@@ -2,9 +2,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { useContext, useState } from "react";
-import { FunctionsContext } from "@/Context/FunctionsContext";
+import { useState, useContext } from "react";
 import axios from "axios";
+import { FunctionsContext } from "@/Context/FunctionsContext";
 import {
     Card,
     CardContent,
@@ -14,51 +14,51 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 
-export default function TransactionCard() {
+export default function ProductCard() {
     const [isLoading, setIsLoading] = useState(false);
     const {
-        name,
-        setclientName,
-        idp,
-        setpID,
-        address,
-        setaddress,
-        quantity,
-        setpQuantity,
+        productName,
+        productQuantity,
+        product_type,
+        laboratory,
+        setProductName,
+        setLaboratory,
+        setProductQuantity,
+        setProduct_type,
     } = useContext(FunctionsContext);
 
     const fields = [
         {
-            label: "Client name",
-            id: "name",
+            label: "Product Name",
+            id: "product",
             type: "text",
-            value: name,
-            setValue: setclientName,
-            description: "Client name should only contain letters and spaces",
-        },
-        {
-            label: "Product's ID",
-            id: "productID",
-            type: "number",
-            value: idp,
-            setValue: setpID,
-            description: "Only numeric numbers are allowed",
-        },
-        {
-            label: "Address",
-            id: "address",
-            type: "text",
-            value: address,
-            setValue: setaddress,
-            description: "Enter a valid address",
+            value: productName,
+            setValue: setProductName,
+            description: "Product Name should only contain letters and spaces",
         },
         {
             label: "Quantity",
-            id: "quantity",
+            id: "productQuantity",
             type: "number",
-            value: quantity,
-            setValue: setpQuantity,
+            value: productQuantity,
+            setValue: setProductQuantity,
             description: "Only numeric numbers are allowed",
+        },
+        {
+            label: "Laboratory",
+            id: "laboratory",
+            type: "text",
+            value: laboratory,
+            setValue: setLaboratory,
+            description: "Enter the Laboratory Name",
+        },
+        {
+            label: "Product Type",
+            id: "product",
+            type: "text",
+            value: product_type,
+            setValue: setProduct_type,
+            description: "Enter the type of the product",
         },
     ];
 
@@ -66,13 +66,13 @@ export default function TransactionCard() {
         e.preventDefault();
         setIsLoading(true);
 
-        if (!/^[a-zA-Z\s]+$/.test(name)) {
-            alert("Client name should only contain letters and spaces.");
+        if (!/^[a-zA-Z\s]+$/.test(productName)) {
+            alert("Product Name should only contain letters and spaces.");
             setIsLoading(false);
             return;
         }
 
-        if (!name || !idp || !address || !quantity) {
+        if (!productName || !laboratory || !product_type || !productQuantity) {
             alert("Please fill out all fields.");
             setIsLoading(false);
             return;
@@ -80,12 +80,12 @@ export default function TransactionCard() {
 
         axios
             .post(
-                "http://localhost:8081/Pharmaceutica/AddingElement/add?tab=3",
+                "http://localhost:8081/Pharmaceutica//AddingElement/add?tab=3",
                 {
-                    name,
-                    idp,
-                    address,
-                    quantity,
+                    productName,
+                    laboratory,
+                    product_type,
+                    productQuantity,
                 }
             )
             .then((res) => {
@@ -102,7 +102,7 @@ export default function TransactionCard() {
         <Card className="mx-72">
             <CardHeader>
                 <div className="flex justify-center align-center">
-                    <CardTitle>Make a Transaction</CardTitle>
+                    <CardTitle>Add a Product</CardTitle>
                 </div>
             </CardHeader>
             <CardContent>
@@ -140,7 +140,7 @@ export default function TransactionCard() {
                     </div>
                 </form>
             </CardContent>
-            <CardFooter className="flex justify-center ">
+            <CardFooter className="flex justify-center">
                 {isLoading ? (
                     <Button disabled className="w-72">
                         <Loader2 className="animate-spin" />

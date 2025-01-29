@@ -1,6 +1,3 @@
-import axios from "axios";
-import { Button } from "@/components/ui/button";
-
 import {
     Table,
     TableBody,
@@ -9,14 +6,12 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
-export default function TransactionTable() {
+export default function TransactionLogTable() {
     const [transactions, setTransactions] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const maxRows = 13;
 
     useEffect(() => {
         const fetchTransactions = async () => {
@@ -52,7 +47,7 @@ export default function TransactionTable() {
     }
 
     return (
-        <div>
+        <div className="mx-10">
             <Table className="border-collapse bg-white text-black rounded-lg">
                 <TableHeader>
                     <TableRow>
@@ -65,7 +60,7 @@ export default function TransactionTable() {
                 </TableHeader>
                 <TableBody>
                     {transactions.length > 0 ? (
-                        transactions.slice(0, maxRows).map((data, index) => (
+                        transactions.map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell className="p-2">
                                     {data.idt}
@@ -104,11 +99,6 @@ export default function TransactionTable() {
                     )}
                 </TableBody>
             </Table>
-            <Link to="/transactionsLog">
-                <Button variant="link" className="float-right">
-                    See more
-                </Button>
-            </Link>
         </div>
     );
 }

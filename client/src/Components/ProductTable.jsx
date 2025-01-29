@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Button } from "@/components/ui/button";
-
 import {
     Table,
     TableBody,
@@ -9,41 +8,32 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TransactionTable() {
-    const [transactions, setTransactions] = useState([]);
+export default function ProductTable() {
     const [isLoading, setIsLoading] = useState(true);
-    const maxRows = 13;
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const fetchTransactions = async () => {
-            try {
-                const res = await axios.get(
-                    "http://localhost:8081/Pharmaceutica/GetAllElements?tab=3"
-                );
-                setTransactions(res.data);
-            } catch (error) {
-                console.error("Error fetching transactions:", error);
-            } finally {
+        axios
+            .get("http://localhost:8081/Pharmaceutica/GetAllElements?tab=3")
+            .then((res) => {
+                setProducts(res.data);
                 setIsLoading(false);
-            }
-        };
-
-        fetchTransactions();
+            })
+            .catch((err) => {
+                console.log("error fetching data", err);
+                setIsLoading(false);
+            });
     }, []);
 
     const tableHeaders = [
-        "Transaction ID",
-        "Client Name",
+        "Product ID",
         "Product Name",
         "Product Type",
-        "Date",
-        "Address",
         "Quantity",
-        "Price",
+        "Laboratory",
         "Status",
     ];
 
@@ -64,14 +54,11 @@ export default function TransactionTable() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {transactions.length > 0 ? (
-                        transactions.slice(0, maxRows).map((data, index) => (
+                    {products.length > 0 ? (
+                        products.map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell className="p-2">
-                                    {data.idt}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    {data.client_name}
+                                    {data.productID}
                                 </TableCell>
                                 <TableCell className="p-2">
                                     {data.product_name}
@@ -80,31 +67,25 @@ export default function TransactionTable() {
                                     {data.product_type}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.formatted_date}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    {data.client_address}
-                                </TableCell>
-                                <TableCell className="p-2">
                                     {data.quantity}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    ${data.price}
-                                </TableCell>{" "}
+                                    {data.laboratory}
+                                </TableCell>
                                 <TableCell className="p-2">
-                                    {/* Here should be the transaction status either "Ongoing" or "Finished" */}
-                                    {data.transactionsStatus}
+                                    {/* Here should be the status of the product either "Ongoing" or "Finished" */}
+                                    {data.productStatus || "N/A"}
                                 </TableCell>
                             </TableRow>
                         ))
                     ) : (
                         <>
-                            <p>No Transactions Found</p>
+                            <p>No Products Found</p>
                         </>
                     )}
                 </TableBody>
             </Table>
-            <Link to="/transactionsLog">
+            <Link to="/productsLog">
                 <Button variant="link" className="float-right">
                     See more
                 </Button>

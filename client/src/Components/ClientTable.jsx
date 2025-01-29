@@ -13,38 +13,30 @@ import {
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function TransactionTable() {
-    const [transactions, setTransactions] = useState([]);
+export default function ClientTable() {
     const [isLoading, setIsLoading] = useState(true);
-    const maxRows = 13;
+    const [clients, setClients] = useState([]);
 
     useEffect(() => {
-        const fetchTransactions = async () => {
-            try {
-                const res = await axios.get(
-                    "http://localhost:8081/Pharmaceutica/GetAllElements?tab=3"
-                );
-                setTransactions(res.data);
-            } catch (error) {
-                console.error("Error fetching transactions:", error);
-            } finally {
+        axios
+            .get("http://localhost:8081/Pharmaceutica/GetAllElements?tab=3")
+            .then((res) => {
+                setClients(res.data);
                 setIsLoading(false);
-            }
-        };
-
-        fetchTransactions();
+            })
+            .catch((err) => {
+                console.log("error fetching data", err);
+                setIsLoading(false);
+            });
     }, []);
 
     const tableHeaders = [
-        "Transaction ID",
+        "Client ID",
         "Client Name",
-        "Product Name",
-        "Product Type",
-        "Date",
+        "Category",
         "Address",
-        "Quantity",
-        "Price",
-        "Status",
+        "Phone Number",
+        "Email",
     ];
 
     if (isLoading) {
@@ -64,47 +56,37 @@ export default function TransactionTable() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {transactions.length > 0 ? (
-                        transactions.slice(0, maxRows).map((data, index) => (
+                    {clients.length > 0 ? (
+                        clients.map((data, index) => (
                             <TableRow key={index}>
                                 <TableCell className="p-2">
-                                    {data.idt}
+                                    {data.idt || "N/A"}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.client_name}
+                                    {data.client_name || "N/A"}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.product_name}
+                                    {data.category || "N/A"}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.product_type}
+                                    {data.address}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.formatted_date}
+                                    {data.phoneNum || "N/A"}
                                 </TableCell>
                                 <TableCell className="p-2">
-                                    {data.client_address}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    {data.quantity}
-                                </TableCell>
-                                <TableCell className="p-2">
-                                    ${data.price}
-                                </TableCell>{" "}
-                                <TableCell className="p-2">
-                                    {/* Here should be the transaction status either "Ongoing" or "Finished" */}
-                                    {data.transactionsStatus}
+                                    {data.email || "N/A"}
                                 </TableCell>
                             </TableRow>
                         ))
                     ) : (
                         <>
-                            <p>No Transactions Found</p>
+                            <p>No Clients Found</p>
                         </>
                     )}
                 </TableBody>
             </Table>
-            <Link to="/transactionsLog">
+            <Link to="/clientsLog">
                 <Button variant="link" className="float-right">
                     See more
                 </Button>

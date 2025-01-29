@@ -13,6 +13,13 @@ import {
     CardDescription,
     CardTitle,
 } from "@/components/ui/card";
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select";
 
 export default function ClientCard() {
     const [isLoading, setIsLoading] = useState(false);
@@ -57,14 +64,6 @@ export default function ClientCard() {
             description: "Enter a valid address",
         },
         {
-            label: "Category",
-            id: "category",
-            type: "text",
-            value: category,
-            setValue: setCategory,
-            description: "Eg: Individual/ Company",
-        },
-        {
             label: "Phone Number",
             id: "phoneNum",
             type: "number",
@@ -86,17 +85,17 @@ export default function ClientCard() {
         e.preventDefault();
         setIsLoading(true);
 
-        // if (!/^[a-zA-Z\s]+$/.test(name)) {
-        //     alert("Client name should only contain letters and spaces.");
-        //     setIsLoading(false);
-        //     return;
-        // }
+        if (!/^[a-zA-Z\s]+$/.test(name)) {
+            alert("Client name should only contain letters and spaces.");
+            setIsLoading(false);
+            return;
+        }
 
-        // if (!name || !idp || !address || !quantity) {
-        //     alert("Please fill out all fields.");
-        //     setIsLoading(false);
-        //     return;
-        // }
+        if (!name || !idp || !address || !category || !phoneNum || !email) {
+            alert("Please fill out all fields.");
+            setIsLoading(false);
+            return;
+        }
 
         axios
             .post(
@@ -124,7 +123,7 @@ export default function ClientCard() {
         <Card className="mx-72">
             <CardHeader>
                 <div className="flex justify-center align-center">
-                    <CardTitle>Make a Transaction</CardTitle>
+                    <CardTitle>Add a Client</CardTitle>
                 </div>
             </CardHeader>
             <CardContent>
@@ -159,6 +158,17 @@ export default function ClientCard() {
                                 </div>
                             )
                         )}
+                        <Select onValueChange={(value) => setCategory(value)}>
+                            <SelectTrigger className="max-w-3xs mt-5 max-h-[2rem]">
+                                <SelectValue placeholder="Category" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="individual">
+                                    Individual
+                                </SelectItem>
+                                <SelectItem value="company">Company</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                 </form>
             </CardContent>
