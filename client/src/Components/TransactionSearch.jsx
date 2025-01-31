@@ -10,7 +10,7 @@ import { useState } from "react";
 
 export default function TransactionSearch() {
     const [isAsending, setisAsending] = useState(true);
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     return (
         <div className="flex w-full max-w-sm items-center space-x-2">
             <Input
@@ -18,8 +18,8 @@ export default function TransactionSearch() {
                 placeholder="What are you searching for ?"
                 className="bg-white"
             />
-            <Button type="submit" onClick={() => setLoading(!loading)}>
-                {loading ? <Loader2 className="animate-spin" /> : "Search"}
+            <Button type="submit" onClick={() => setIsLoading(!isLoading)}>
+                {isLoading ? <Loader2 className="animate-spin" /> : "Search"}
             </Button>
             <Button onClick={() => setisAsending(!isAsending)}>
                 <FontAwesomeIcon
