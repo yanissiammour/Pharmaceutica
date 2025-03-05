@@ -17,47 +17,37 @@ import {
 export default function TransactionCard() {
     const [isLoading, setIsLoading] = useState(false);
     const {
-        name,
-        setclientName,
-        idp,
-        setpID,
-        address,
-        setaddress,
-        quantity,
-        setpQuantity,
+        formData,
+        setFormData,
     } = useContext(FunctionsContext);
 
     const fields = [
         {
             label: "Client name",
-            id: "name",
+            name: "name",
             type: "text",
-            value: name,
-            setValue: setclientName,
+            value: formData.name,
             description: "Client name should only contain letters and spaces",
         },
         {
             label: "Product's ID",
-            id: "productID",
+            name: "idp",
             type: "number",
-            value: idp,
-            setValue: setpID,
+            value: formData.idp,
             description: "Only numeric numbers are allowed",
         },
         {
             label: "Address",
-            id: "address",
+            name: "address",
             type: "text",
-            value: address,
-            setValue: setaddress,
+            value: formData.address,
             description: "Enter a valid address",
         },
         {
             label: "Quantity",
-            id: "quantity",
+            name: "quantity",
             type: "number",
-            value: quantity,
-            setValue: setpQuantity,
+            value: formData.quantity,
             description: "Only numeric numbers are allowed",
         },
     ];
@@ -66,7 +56,9 @@ export default function TransactionCard() {
         e.preventDefault();
         setIsLoading(true);
 
-        if (!/^[a-zA-Z\s]+$/.test(name)) {
+        const { name, idp, address, quantity } = formData;
+
+        if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
             alert("Client name should only contain letters and spaces.");
             setIsLoading(false);
             return;
@@ -110,23 +102,19 @@ export default function TransactionCard() {
                     <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10 h-60">
                         {fields.map(
                             (
-                                {
-                                    label,
-                                    id,
-                                    type,
-                                    value,
-                                    setValue,
-                                    description,
-                                },
+                                { label, name, type, value, description },
                                 index
                             ) => (
-                                <div index={index} className="flex flex-col">
+                                <div key={index} className="flex flex-col">
                                     <Label className="pb-2">{label}</Label>
                                     <Input
-                                        id={id}
+                                        name={name}
                                         placeholder={`Enter the ${label}`}
                                         onChange={(e) =>
-                                            setValue(e.target.value)
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                [name]: e.target.value,
+                                            }))
                                         }
                                         value={value}
                                         type={type}
