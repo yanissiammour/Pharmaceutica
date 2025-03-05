@@ -16,48 +16,35 @@ import {
 
 export default function ProductCard() {
     const [isLoading, setIsLoading] = useState(false);
-    const {
-        productName,
-        productQuantity,
-        product_type,
-        laboratory,
-        setProductName,
-        setLaboratory,
-        setProductQuantity,
-        setProduct_type,
-    } = useContext(FunctionsContext);
+    const { formData, setFormData } = useContext(FunctionsContext);
 
     const fields = [
         {
             label: "Product Name",
-            id: "product",
+            name: "productName",
             type: "text",
-            value: productName,
-            setValue: setProductName,
+            value: formData.productName,
             description: "Product Name should only contain letters and spaces",
         },
         {
             label: "Quantity",
-            id: "productQuantity",
+            name: "productQuantity",
             type: "number",
-            value: productQuantity,
-            setValue: setProductQuantity,
+            value: formData.productQuantity,
             description: "Only numeric numbers are allowed",
         },
         {
             label: "Laboratory",
-            id: "laboratory",
+            name: "laboratory",
             type: "text",
-            value: laboratory,
-            setValue: setLaboratory,
+            value: formData.laboratory,
             description: "Enter the Laboratory Name",
         },
         {
             label: "Product Type",
-            id: "product",
+            name: "product_type",
             type: "text",
-            value: product_type,
-            setValue: setProduct_type,
+            value: formData.product_type,
             description: "Enter the type of the product",
         },
     ];
@@ -65,6 +52,9 @@ export default function ProductCard() {
     const handleClick = (e) => {
         e.preventDefault();
         setIsLoading(true);
+
+        const { productName, laboratory, product_type, productQuantity } =
+            formData;
 
         if (!/^[a-zA-Z\s]+$/.test(productName)) {
             alert("Product Name should only contain letters and spaces.");
@@ -110,23 +100,19 @@ export default function ProductCard() {
                     <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10 h-60">
                         {fields.map(
                             (
-                                {
-                                    label,
-                                    id,
-                                    type,
-                                    value,
-                                    setValue,
-                                    description,
-                                },
+                                { label, name, type, value, description },
                                 index
                             ) => (
-                                <div index={index} className="flex flex-col">
+                                <div key={index} className="flex flex-col">
                                     <Label className="pb-2">{label}</Label>
                                     <Input
-                                        id={id}
+                                        name={name}
                                         placeholder={`Enter the ${label}`}
                                         onChange={(e) =>
-                                            setValue(e.target.value)
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                [name]: e.target.value,
+                                            }))
                                         }
                                         value={value}
                                         type={type}

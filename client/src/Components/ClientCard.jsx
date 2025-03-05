@@ -23,60 +23,42 @@ import {
 
 export default function ClientCard() {
     const [isLoading, setIsLoading] = useState(false);
-    const {
-        name,
-        setclientName,
-        idp,
-        setpID,
-        address,
-        setaddress,
-        category,
-        setCategory,
-        phoneNum,
-        setPhoneNum,
-        email,
-        setEmail,
-    } = useContext(FunctionsContext);
+    const { formData, setFormData } = useContext(FunctionsContext);
 
     const fields = [
         {
             label: "Client name",
-            id: "name",
+            name: "name",
             type: "text",
-            value: name,
-            setValue: setclientName,
+            value: formData.name,
             description: "Client name should only contain letters and spaces",
         },
         {
             label: "Product's ID",
-            id: "productID",
+            name: "idp",
             type: "number",
-            value: idp,
-            setValue: setpID,
+            value: formData.idp,
             description: "Only numeric numbers are allowed",
         },
         {
             label: "Address",
-            id: "address",
+            name: "address",
             type: "text",
-            value: address,
-            setValue: setaddress,
+            value: formData.address,
             description: "Enter a valid address",
         },
         {
             label: "Phone Number",
-            id: "phoneNum",
+            name: "phoneNum",
             type: "number",
-            value: phoneNum,
-            setValue: setPhoneNum,
+            value: formData.phoneNum,
             description: "Enter the phone number of the client",
         },
         {
             label: "Email",
-            id: "email",
+            name: "email",
             type: "text",
-            value: email,
-            setValue: setEmail,
+            value: formData.email,
             description: "Enter a valid email address",
         },
     ];
@@ -84,6 +66,8 @@ export default function ClientCard() {
     const handleClick = (e) => {
         e.preventDefault();
         setIsLoading(true);
+
+        const { name, idp, address, category, phoneNum, email } = formData;
 
         if (!/^[a-zA-Z\s]+$/.test(name)) {
             alert("Client name should only contain letters and spaces.");
@@ -131,23 +115,19 @@ export default function ClientCard() {
                     <div className="grid grid-rows-3 grid-cols-2 mt-5 gap-x-2 gap-y-10 h-60">
                         {fields.map(
                             (
-                                {
-                                    label,
-                                    id,
-                                    type,
-                                    value,
-                                    setValue,
-                                    description,
-                                },
+                                { label, name, type, value, description },
                                 index
                             ) => (
-                                <div index={index} className="flex flex-col">
+                                <div key={index} className="flex flex-col">
                                     <Label className="pb-2">{label}</Label>
                                     <Input
-                                        id={id}
+                                        name={name}
                                         placeholder={`Enter the ${label}`}
                                         onChange={(e) =>
-                                            setValue(e.target.value)
+                                            setFormData((prev) => ({
+                                                ...prev,
+                                                [name]: e.target.value,
+                                            }))
                                         }
                                         value={value}
                                         type={type}
@@ -158,7 +138,14 @@ export default function ClientCard() {
                                 </div>
                             )
                         )}
-                        <Select onValueChange={(value) => setCategory(value)}>
+                        <Select
+                            onValueChange={(value) =>
+                                setFormData((prev) => ({
+                                    ...prev,
+                                    category: value,
+                                }))
+                            }
+                        >
                             <SelectTrigger className="max-w-3xs mt-5 max-h-[2rem]">
                                 <SelectValue placeholder="Category" />
                             </SelectTrigger>
