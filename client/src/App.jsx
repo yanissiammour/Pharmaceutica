@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Navbar from "./Components/Navbar";
 import Transactions from "./Pages/Transactions";
@@ -8,10 +8,9 @@ import TransactionsLog from "./Pages/TransactionsLog";
 import ClientsLog from "./Pages/ClientsLog";
 import ProductsLog from "./Pages/ProductsLog";
 
-
 function App() {
     return (
-        <BrowserRouter className="m-0 p-0 border-box h-screen hide-scrollbar">
+        <div className="m-0 p-0 border-box hide-scrollbar">
             <Navbar />
             <div className="mt-6 bg-customBackground h-full">
                 <Routes>
@@ -27,7 +26,7 @@ function App() {
                     />
                 </Routes>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
